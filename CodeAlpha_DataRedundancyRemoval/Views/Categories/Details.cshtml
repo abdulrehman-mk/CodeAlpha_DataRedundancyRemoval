@@ -1,0 +1,39 @@
+@model Category
+@{
+    ViewData["Title"] = "Category Details";
+}
+
+<h1>Category Details</h1>
+
+<div class="card mb-3" style="max-width: 500px;">
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Name)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Name)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Description)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Description)</dd>
+        </dl>
+    </div>
+</div>
+
+<h4>Products in this category</h4>
+@if (Model.Products.Any())
+{
+    <ul class="list-group mb-3" style="max-width: 500px;">
+        @foreach (var product in Model.Products)
+        {
+            <li class="list-group-item d-flex justify-content-between">
+                <span>@product.Name</span>
+                <span>@product.Price.ToString("C")</span>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p class="text-muted">No products yet.</p>
+}
+
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+<a asp-action="Index" class="btn btn-outline-secondary">Back to list</a>

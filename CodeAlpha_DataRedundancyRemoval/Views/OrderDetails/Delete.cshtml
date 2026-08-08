@@ -1,0 +1,28 @@
+@model OrderDetail
+@{
+    ViewData["Title"] = "Remove Line Item";
+}
+
+<h1>Remove Line Item</h1>
+
+<h3>Are you sure you want to remove this product from Order #@Model.OrderId?</h3>
+<div class="card mb-3" style="max-width: 500px;">
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-4">Product</dt>
+            <dd class="col-sm-8">@Model.Product?.Name</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Quantity)</dt>
+            <dd class="col-sm-8">@Model.Quantity</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.UnitPrice)</dt>
+            <dd class="col-sm-8">@Model.UnitPrice.ToString("C")</dd>
+        </dl>
+    </div>
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Remove</button>
+    <a asp-controller="Orders" asp-action="Details" asp-route-id="@Model.OrderId" class="btn btn-outline-secondary">Cancel</a>
+</form>

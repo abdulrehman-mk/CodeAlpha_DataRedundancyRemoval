@@ -1,0 +1,64 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="p-4 p-md-5 mb-4 rounded-3 bg-dark text-white">
+    <div class="col-lg-8 px-0">
+        <h1 class="display-6 fw-bold">CodeAlpha_DataRedundancyRemoval</h1>
+        <p class="lead">
+            A demo ASP.NET Core MVC application built with EF Core and SQL Server that shows how
+            proper database normalization removes redundant, duplicated data.
+        </p>
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card card-stat shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Categories</h6>
+                <h2>@ViewBag.CategoryCount</h2>
+                <a class="btn btn-sm btn-outline-primary" asp-controller="Categories" asp-action="Index">Manage</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stat shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Products</h6>
+                <h2>@ViewBag.ProductCount</h2>
+                <a class="btn btn-sm btn-outline-primary" asp-controller="Products" asp-action="Index">Manage</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stat shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Customers</h6>
+                <h2>@ViewBag.CustomerCount</h2>
+                <a class="btn btn-sm btn-outline-primary" asp-controller="Customers" asp-action="Index">Manage</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-stat shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="text-muted">Orders</h6>
+                <h2>@ViewBag.OrderCount</h2>
+                <a class="btn btn-sm btn-outline-primary" asp-controller="Orders" asp-action="Index">Manage</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h4 class="card-title">How redundancy is removed here</h4>
+        <ul>
+            <li><strong>Category</strong> is stored once; <strong>Product</strong> references it with <code>CategoryId</code> instead of repeating the category name on every product.</li>
+            <li><strong>Customer</strong> is stored once; <strong>Order</strong> references it with <code>CustomerId</code> instead of repeating customer details on every order.</li>
+            <li><strong>OrderDetail</strong> is a junction table linking <strong>Order</strong> and <strong>Product</strong>, so a many-to-many relationship is modeled without duplicating product or order data.</li>
+            <li><strong>UnitPrice</strong> is captured on the order line at the time of sale, so historical orders stay accurate even if a product's price changes later &mdash; without duplicating the full product record.</li>
+        </ul>
+    </div>
+</div>

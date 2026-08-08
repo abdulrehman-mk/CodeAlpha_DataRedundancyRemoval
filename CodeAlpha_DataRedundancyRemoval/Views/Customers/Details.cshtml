@@ -1,0 +1,45 @@
+@model Customer
+@{
+    ViewData["Title"] = "Customer Details";
+}
+
+<h1>Customer Details</h1>
+
+<div class="card mb-3" style="max-width: 500px;">
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Name)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Name)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Email)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Email)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Phone)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Phone)</dd>
+
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Address)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Address)</dd>
+        </dl>
+    </div>
+</div>
+
+<h4>Order history</h4>
+@if (Model.Orders.Any())
+{
+    <ul class="list-group mb-3" style="max-width: 500px;">
+        @foreach (var order in Model.Orders.OrderByDescending(o => o.OrderDate))
+        {
+            <li class="list-group-item d-flex justify-content-between">
+                <a asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id">Order #@order.Id</a>
+                <span>@order.OrderDate.ToShortDateString()</span>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p class="text-muted">No orders yet.</p>
+}
+
+<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+<a asp-action="Index" class="btn btn-outline-secondary">Back to list</a>

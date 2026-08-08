@@ -1,0 +1,25 @@
+@model Order
+@{
+    ViewData["Title"] = "Delete Order";
+}
+
+<h1>Delete Order</h1>
+
+<h3>Are you sure you want to delete Order #@Model.Id? This also removes all of its line items.</h3>
+<div class="card mb-3" style="max-width: 500px;">
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.OrderDate)</dt>
+            <dd class="col-sm-8">@Model.OrderDate.ToShortDateString()</dd>
+
+            <dt class="col-sm-4">Customer</dt>
+            <dd class="col-sm-8">@Model.Customer?.Name</dd>
+        </dl>
+    </div>
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+</form>
