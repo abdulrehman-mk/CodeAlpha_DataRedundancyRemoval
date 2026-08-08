@@ -57,6 +57,6 @@ This project demonstrates how **database normalization and relational design** c
 ## 📌 CodeAlpha Internship
 
 **Organization:** CodeAlpha
-**Task:** Task — Data Redundancy Removal System
+**Task:** Data Redundancy Removal System
 **Batch:** July 2026
 **Intern:** Abdul Rehman
