@@ -1,6 +1,6 @@
 # CodeAlpha_DataRedundancyRemoval
 
-### CodeAlpha Cloud Computing Internship — Task
+### CodeAlpha Internship Task
 
 A web-based **Data Redundancy Removal System** built with ASP.NET Core MVC and SQL Server. The project demonstrates how proper database normalization and relationships can prevent unnecessary duplication and keep data accurate and consistent.
 
